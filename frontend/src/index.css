@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #F8F5EE !important;
+    color: #4A2E1F !important;
+    font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-image: none !important; /* Eliminate visual glare gradients */
+  }
+
+  /* Accessibility settings for font sizing */
+  [data-font-size="normal"] {
+    --text-scale-multiplier: 1.0;
+    font-size: 18px; /* High contrast body base */
+  }
+
+  [data-font-size="large"] {
+    --text-scale-multiplier: 1.25;
+    font-size: 22px;
+  }
+
+  [data-font-size="xlarge"] {
+    --text-scale-multiplier: 1.45;
+    font-size: 26px;
+  }
+
+  /* Focus rings for keyboard/tablet users */
+  *:focus-visible {
+    outline: none !important;
+    ring: 4px solid #4A2E1F !important;
+    ring-offset: 2px !important;
+  }
+}
+
+/* Custom interactive scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background-color: #F1ECE1;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #4A2E1F;
+  border-radius: 9999px;
+  border: 3px solid #F1ECE1;
+}
+
+/* Micro-animations and pulse triggers */
+@keyframes pulse-emergency {
+  0% {
+    box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(211, 47, 47, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(211, 47, 47, 0);
+  }
+}
+
+.animate-emergency-pulse {
+  animation: pulse-emergency 2s infinite;
+}
+
+@keyframes scan-line {
+  0% { top: 0%; opacity: 0.8; }
+  50% { top: 100%; opacity: 0.8; }
+  100% { top: 0%; opacity: 0.8; }
+}
+
+.animate-scan-line {
+  animation: scan-line 3s infinite linear;
+}
+
+/* Soft scale interactions */
+.active-press:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease-out;
+}

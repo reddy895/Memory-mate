@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MemoryMate</title>
+    <script>
+      window.addEventListener('error', function(e) {
+        console.error("Global Error Caught:", e);
+        const errorDiv = document.createElement('div');
+        errorDiv.style.position = 'fixed';
+        errorDiv.style.top = '0';
+        errorDiv.style.left = '0';
+        errorDiv.style.width = '100%';
+        errorDiv.style.maxHeight = '100%';
+        errorDiv.style.overflowY = 'auto';
+        errorDiv.style.background = '#FEE2E2';
+        errorDiv.style.color = '#991B1B';
+        errorDiv.style.padding = '20px';
+        errorDiv.style.fontFamily = 'monospace';
+        errorDiv.style.zIndex = '99999';
+        errorDiv.style.whiteSpace = 'pre-wrap';
+        errorDiv.style.boxSizing = 'border-box';
+        errorDiv.innerHTML = '<h2 style="margin-top:0;">Runtime Error:</h2>' + e.message + '<br/><br/><b>File:</b> ' + e.filename + ':' + e.lineno + ':' + e.colno + '<br/><br/><b>Stack:</b><br/>' + (e.error ? e.error.stack : 'No stack trace');
+        document.body.appendChild(errorDiv);
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error("Global Rejection Caught:", e);
+        const errorDiv = document.createElement('div');
+        errorDiv.style.position = 'fixed';
+        errorDiv.style.top = '0';
+        errorDiv.style.left = '0';
+        errorDiv.style.width = '100%';
+        errorDiv.style.maxHeight = '100%';
+        errorDiv.style.overflowY = 'auto';
+        errorDiv.style.background = '#FEF3C7';
+        errorDiv.style.color = '#92400E';
+        errorDiv.style.padding = '20px';
+        errorDiv.style.fontFamily = 'monospace';
+        errorDiv.style.zIndex = '99999';
+        errorDiv.style.whiteSpace = 'pre-wrap';
+        errorDiv.style.boxSizing = 'border-box';
+        errorDiv.innerHTML = '<h2 style="margin-top:0;">Unhandled Promise Rejection:</h2>' + e.reason + (e.reason && e.reason.stack ? '<br/><br/><b>Stack:</b><br/>' + e.reason.stack : '');
+        document.body.appendChild(errorDiv);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
